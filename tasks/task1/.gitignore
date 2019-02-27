@@ -1,0 +1,11 @@
+# Composer
+vendor/
+
+# PhpStorm
+.idea/
+
+# Nette
+log/*
+temp/*
+!.gitignore
+!.htaccess
