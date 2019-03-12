@@ -1,0 +1,29 @@
+parameters:
+
+
+application:
+	errorPresenter: Error
+	mapping:
+		*: App\*Module\Presenters\*Presenter
+
+
+session:
+	expiration: 14 days
+
+
+services:
+	router: App\RouterFactory::createRouter
+
+	# Továrničky pro formuláře.
+	userservice:
+	    class: App\Forms\UserFormFactory
+	    inject: yes
+	orderservice:
+	    class: App\Forms\OrderFormFactory
+	    inject: yes
+    # Registrujeme Modely jako services, aby mohly být injectovány.
+
+	- App\Model\UserModel
+	- App\Model\OrderModel
+	- App\Model\StatisticModel
+

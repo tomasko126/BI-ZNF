@@ -1,0 +1,28 @@
+{block #content}
+
+<h1>Uživatelé</h1>
+
+<p><a href="{plink Order:default}">Nákup</a> <a href="{plink Statistic:default}">Statistika</a>  <a href="{plink Homepage:default}">Menu</a></p>
+
+<a href="{plink add}">Vytvoř</a>
+<table border="1" width="100%">
+    <tr>
+        <th>Příjmení</th>
+        <th>Jméno</th>
+        <th>Registrace</th>
+        <th>Je Admin?</th>
+        <th colspan="2">Akce</th>
+
+    </tr>
+        {foreach $users as $u}
+            <tr>
+                <td>{$u['surname']}</td>
+                <td>{$u['firstname']}</td>
+                <td>{$u['registered']}</td>
+                <td>{$u['is_admin']}</td>
+                <td><a href="{plink edit id => $u['id']}">Edituj</a></td>
+                <td><a href="{plink delete id => $u['id']}">Odeber</a></td>
+            </tr>
+        {/foreach}
+    </div>
+</table>
