@@ -55,8 +55,7 @@ class UserPresenter extends BasePresenter
     public function actionEdit($id) {
         $form = $this['editForm'];
         try {
-
-            /** TODO naplnění dat do editačního formuláře $user = */
+            $user = $this->userModel->getUser($id);
             $form->setDefaults($user);
         } catch (NoDataFound $e) {
             $form->addError('Nelze načíst data');
@@ -115,16 +114,15 @@ class UserPresenter extends BasePresenter
      * Metoda pro naplnění dat pro šablonu dané akce
      */
     public function renderEdit($id) {
-        /** TODO - nastavení atributu šablony name $users = */
+        $user = $this->userModel->getUser($id);
         $this->template->name = $user['surname'].' '.$user['firstname'];
-
     }
 
     /**
      * Metoda pro naplnění dat pro šablonu dané akce
      */
     public function renderDelete($id) {
-        /** TODO - nastavení atributu šablony name  $user = */
+        $user = $this->userModel->getUser($id);
         $this->template->name = $user['surname'].' '.$user['firstname'];
     }
 
@@ -132,7 +130,7 @@ class UserPresenter extends BasePresenter
      * Metoda pro naplnění dat pro šablonu dané akce
      */
     public function renderDefault() {
-        /** TODO - nastavení atributu šablony users $users*/
+        $users = $this->userModel->listUsers();
         $this->template->users = $users;
     }
 }

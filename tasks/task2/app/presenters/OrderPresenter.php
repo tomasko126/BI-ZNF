@@ -45,16 +45,15 @@ class OrderPresenter extends BasePresenter
     public function actionAdd() {
         $form = $this['addForm'];
         try {
-             /** TODO naplnění dat do vkládádacího formuláře $users = ??; */
+            $users = $this->userModel->listUsers();
             $u = [];
-            foreach($users as $user)
+            foreach ($users as $user) {
                 $u[$user['id']] = $user['surname']." ".$user['firstname'];
+            }
             $form['user_id']->setItems($u);
         } catch (NoDataFound $e) {
             $form->addError('Nelze načíst data');
         }
-
-
     }
 
     /**
@@ -64,18 +63,20 @@ class OrderPresenter extends BasePresenter
     public function actionEdit($id) {
         $form = $this['editForm'];
         try {
-            /** TODO naplnění dat do vkládádacího formuláře $users = ??; */
+            $users = $this->userModel->listUsers();
+
             $u = [];
-            foreach($users as $user)
+
+            foreach ($users as $user) {
                 $u[$user['id']] = $user['surname']." ".$user['firstname'];
+            }
             $form['user_id']->setItems($u);
-            /** TODO naplnění dat do editačního formuláře $order = */
+
+            $order = $this->orderModel->getOrder($id);
             $form->setDefaults($order);
         } catch (NoDataFound $e) {
             $form->addError('Nelze načíst data');
         }
-
-
     }
 
     /**
@@ -130,7 +131,7 @@ class OrderPresenter extends BasePresenter
      * Metoda pro naplnění dat pro šablonu dané akce
      */
     public function renderEdit($id) {
-        /** TODO - nastavení atributu šablony name $order = */
+        $order = $this->orderModel->getOrder($id);
         $this->template->name = $order['name'];
     }
 
@@ -138,16 +139,15 @@ class OrderPresenter extends BasePresenter
      * Metoda pro naplnění dat pro šablonu dané akce
      */
     public function renderDelete($id) {
-        /** TODO - nastavení atributu šablony name $order = */
+        $order = $this->orderModel->getOrder($id);
         $this->template->name = $order['name'];
-
     }
 
     /**
      * Metoda pro naplnění dat pro šablonu dané akce
      */
     public function renderDefault() {
-        /** TODO - nastavení atributu šablony orders $orders = */
-
+        $orders = $this->orderModel->listOrders();
+        $this->template->orders = $orders;
     }
 }

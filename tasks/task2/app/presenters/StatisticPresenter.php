@@ -28,7 +28,7 @@ class StatisticPresenter extends BasePresenter
      * Metoda pro naplnění dat pro šablonu dané akce
      */
     public function renderDefault() {
-        /** TODO - nastavení atributu šablony statistics $stats = ??*/
+        $stats = $this->statisticModel->listStatistic();
         $this->template->statistics = $stats;
     }
 }

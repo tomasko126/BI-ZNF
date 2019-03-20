@@ -21,7 +21,7 @@ services:
 	orderservice:
 	    class: App\Forms\OrderFormFactory
 	    inject: yes
-    # Registrujeme Modely jako services, aby mohly být injectovány.
+	# Registrujeme Modely jako services, aby mohly být injectovány.
 
 	- App\Model\UserModel
 	- App\Model\OrderModel
