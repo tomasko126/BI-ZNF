@@ -1,0 +1,30 @@
+{block #content}
+
+<h1>Nákupy</h1>
+
+<p><a href="{plink User:default}">Uživatelé</a> <a href="{plink Statistic:default}">Statistiky</a> <a href="{plink Homepage:default}">Menu</a></p>
+
+<a href="{plink add}">Vytvoř</a>
+<table border="1" width="100%">
+    <tr>
+        <th>Majitel</th>
+        <th>Jméno</th>
+        <th>Množství</th>
+        <th>Cena za jednotku</th>
+        <th>Cena</th>
+        <th colspan="2">Akce</th>
+
+    </tr>
+        {foreach $orders as $o}
+            <tr>
+                <td>{$o->user->surname} {$o->user->firstname}</td>
+                <td>{$o->name}</td>
+                <td>{$o->quantity}</td>
+                <td>{$o->price}</td>
+                <td>{$o->price*$o->quantity}</td>
+                <td><a href="{plink edit id => $o['id']}">Edituj</a></td>
+                <td><a href="{plink delete id => $o['id']}">Odeber</a></td>
+            </tr>
+        {/foreach}
+    </div>
+</table>

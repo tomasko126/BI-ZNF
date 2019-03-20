@@ -1,0 +1,25 @@
+{block #content}
+
+<h1>Statistiky</h1>
+
+<p><a href="{plink User:default}">Uživatelé</a> <a href="{plink Order:default}">Nákupy</a>  <a href="{plink Homepage:default}">Menu</a></p>
+
+<table border="1" width="100%">
+    <tr>
+        <th>Majitel</th>
+        <th>Minimální cena nákupu</th>
+        <th>Maximální cena nákupu</th>
+        <th>Průměrná cena nákupu</th>
+        <th>Celková cena všech nákupu</th>
+    </tr>
+        {foreach $statistics as $s}
+            <tr>
+                <td>{$s['name']}</td>
+                <td>{$s['min']}</td>
+                <td>{$s['max']}</td>
+                <td>{$s['avg']}</td>
+                <td>{$s['sum']}</td>
+            </tr>
+        {/foreach}
+    </div>
+</table>
