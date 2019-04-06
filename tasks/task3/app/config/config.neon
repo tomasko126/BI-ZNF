@@ -1,0 +1,41 @@
+application:
+    errorPresenter: Error
+    mapping:
+        *: App\*Module\Presenters\*Presenter
+
+
+session:
+    expiration: 14 days
+
+
+services:
+	router: App\RouterFactory::createRouter
+
+	orderformfactory:
+	    class: App\Forms\OrderFormFactory
+	    inject: yes
+	ordermodel:
+	    class: App\Model\OrderModel
+	    inject: yes
+
+	pidformfactory:
+	    class: App\Forms\PidFormFactory
+	    inject: yes
+	pidmodel:
+	    class: App\Model\PidModel
+	    inject: yes
+
+	userformfactory:
+	    class: App\Forms\UserFormFactory
+	    inject: yes
+	usermodel:
+	    class: App\Model\UserModel
+	    inject: yes
+
+	statisticmodel:
+	    class: App\Model\StatisticModel
+	    inject: yes
+
+	utilitymodel:
+	    class:  App\Model\UtilityModel
+	    inject: yes
