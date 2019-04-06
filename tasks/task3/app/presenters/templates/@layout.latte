@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>{ifset title}{include title|stripHtml} | {/ifset}BI-ZNF</title>
+
+		{block css}{/block}
+	</head>
+
+	<body>
+		<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
+
+		{include content}
+	</body>
+</html>
