@@ -5,8 +5,7 @@ SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
--- CREATE DATABASE `cviceni03a` /*!40100 DEFAULT CHARACTER SET latin1 */;
--- USE `cviceni03a`;
+USE `tarotoma3`;
 
 DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order` (
