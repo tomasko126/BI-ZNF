@@ -5,8 +5,7 @@ SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
--- CREATE DATABASE `cviceni02a` /*!40100 DEFAULT CHARACTER SET utf16 COLLATE utf16_czech_ci */;
--- USE `cviceni02a`;
+USE `tarotoma2`;
 
 DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order` (
