@@ -1,0 +1,37 @@
+<h1>Editace nákupu {$name}</h1>
+<p>
+<a href="{plink default}">Zpět</a>
+</p>
+
+{form editForm}
+    <table>
+        <tr class="required">
+            <th>{label user_id }</th>
+            <td>{input user_id }</td>
+            <td>{inputError user_id}</td>
+        </tr>
+
+        <tr class="required">
+            <th>{label name /}</th>
+            <td>{input name}</td>
+            <td>{inputError name}</td>
+        </tr>
+
+        <tr class="required">
+            <th>{label quantity /}</th>
+            <td>{input quantity}</td>
+            <td>{inputError quantity}</td>
+        </tr>
+
+        <tr class="required">
+            <th>{label price /}</th>
+            <td>{input price}</td>
+            <td>{inputError price}</td>
+        </tr>
+
+        <tr>
+            <th>{label send /}</th>
+            <td>{input send}</td>
+        </tr>
+    </table>
+{/form}

@@ -1,0 +1,27 @@
+{block #content}
+
+<h1>Rodná čísla</h1>
+
+<p>
+    <a href="{plink User:default}">Uživatelé</a>
+    <a href="{plink Order:default}">Nákup</a>
+    <a href="{plink Statistic:default}">Statistika</a>
+    <a href="{plink Homepage:default}">Menu</a>
+</p>
+
+<a href="{plink add}">Vytvoř</a>
+<table border="1" width="100%">
+    <tr>
+        <th>Rodné číslo</th>
+        <th colspan="2">Akce</th>
+
+    </tr>
+        {foreach $pids as $pid}
+            <tr>
+                <td>{$pid['name']}</td>
+                <td><a href="{plink edit id => $pid['id']}">Edituj</a></td>
+                <td><a href="{plink delete id => $pid['id']}">Odeber</a></td>
+            </tr>
+        {/foreach}
+    </div>
+</table>
