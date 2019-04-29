@@ -4,7 +4,7 @@ SET NAMES utf8;
 SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
-USE `tarotoma4`;
+USE `tarotoma5`;
 
 DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order` (
