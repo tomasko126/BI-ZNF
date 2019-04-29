@@ -1,2 +1,4 @@
-.DS_Store
-*/.DS_Store
+**/.DS_Store
+**/local.neon
+**/.idea
+**/config.local.neon
