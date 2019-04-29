@@ -1,34 +1,42 @@
 # BI-ZNF
 
-## Cvičení 3
+## Cvičení 4
 
-Projekt pro třetí cvičení předmětu BI-ZNF.
+Varianta A projektu pro čtvrté cvičení předmětu BI-ZNF.
 
-1. Naklonujte si a nainstalujte (příkaz "composer install") projekt do vašeho lokálního adresáře.
 
-2. Vytvořte si databázovou strukturu (MySQL) podle přítomného **SQL scriptu** a nastavte přístup k dané databázi v konfiguračním souboru ("app/config/config.local.neon")
+<note>git clone git@gitlab.fit.cvut.cz:BI-ZNF/cviceni04a.git </note>
 
-3. Doplňte DI (Dependency Injection) do všech presenterů a továrniček pro formuláře
+<note important>Hodnocena bude také uživatelská srozumitelnost. Pozor na mazání.</note>
 
-4. V šablonách doplňte vhodné iterátory  
+1. Použijte Vaši předchozí úlohu (doporučuji, protože cest k řešení 3. úlohy je mnoho) nebo si naklonujte a nainstalujte (příkaz "composer install") projekt 04a do vašeho lokálního adresáře.
 
-5. V šabloně "default" pro třídu "UserPresenter" upravte následující
-  * upravte formát ve sloupečku příjmení tak, aby dané příjmení odkazovalo na web www.kdejsme.cz (např. Svoboda bude odkazovat na http://www.kdejsme.cz/prijmeni/Svoboda)
-  * upravte formát ve sloupečku jména tak, aby dané jméno odkazovalo na web www.kdejsme.cz (např. Pavel bude odkazovat na http://www.kdejsme.cz/jmeno/Pavel/)
-  * upravte formát ve sloupečku registrace na český formát datumu (d.m.r - hh:mm:ss)
-  * upravte formát ve sloupečku jeAdmin na formát ANO-NE
-  * upravte formát ve sloupečku Rodné číslo ukazovat vlastní rodné číslo (pozor rodné číslo je nepovinný atribut)  
+2. (Není nutné pokud pokračujete) Vytvořte si databázovou strukturu (MySQL) podle přítomného **SQL scriptu** a nastavte přístup k dané databázi v konfiguračním souboru ("app/config/config.local.neon")
 
-6. Definujte vlastní filtr "phone", který upraví formát českého telefonního čísla +420 123 456 789 (na vstupu je 9 místní řetězec čísel). Pokud vstup není validní, konverze se neprovede a u parametru se objeví !!.
+3. Upravte všechny formuláře tak, aby nepoužívali validaci na úrovni JS.
 
-7. Doplňte DI (Dependency Injection) do modelu UtilityModelu a doplňte funkcionalitu metody "getBirthDay", která z rodného čísla vrátí datum narození  
+4. V továrně "UserFormFactory" upravte následující
+  * přidejte validaci příjmení tak, aby připouštěla jen písmena (první velké, ostatní malá), minimální délku 5 a maximální 30 znaků. 
+  * přidejte validaci jména tak, aby připouštěla jen písmena (první velké, ostatní malá), minimální délku 5 a maximální 30 znaků.
+  * přidejte validaci telefonu tak, aby připouštěla 9 čísel nebo 13, ale první 4 musí být +420. Do DB se ukládá 9 číselná varianta
+  * přidejte celočíselnou položku osobní číslo (upravte i model a DB)
+  * v případě, že je vyplněno příjmení Chludil nebo Máca, se is_admin automaticky odešle jako true.
+  * přidejte validaci osobního čísla tak, aby připouštěla 6 čísel a položka byla povinná pokud není zaškrtnuto je administrátor?
+  
+5. V továrně "OrderFormFactory" upravte následující
+  * přidejte validaci množství tak, aby připouštěla jen kladná celá čísla s maximem 100.
+  * přidejte validaci ceny tak, aby připouštěla jen kladná reálná čísla s minimem 1.
 
-8. Definujte vlastní filtr "sex" a "birthday", který z id rodného čísla získá pohlaví resp. datum narození.  Pokud vstup není validní nebo není definován, konverze se neprovede a u parametru se objeví !!.
+6. V továrně "PidFormFactory" upravte následující
+  * přidejte validaci rodného čísla. 
+  
 
-9. V šabloně „default“ pro třídu „UserPresenter“ upravte následující
-  * upravte formát ve sloupečku Pohlaví na formát MUŽ, ŽENA, NEDEF
-  * upravte formát ve sloupečku datum narození ukazovat datum narození získané z rodného čísla (pozor rodné číslo je nepovinný atribut)
+7. Vytvořte novou továrnu GDPROrderFormFactory
+  * Bude používána v presenteru OrderPresenter (bude mít vlastní Vytvoř (GDPR), edit (GDPR) a delete (GDPR) tlačítko)
+  * V případě otevření jednotlivých formulářů se objeví hlášení "V tomto formuláři budou zpracovávána osobní data, máte příslušné povolení?" a tlačítka ANO-NE
+  * NE - ukončí fomulář, ANO - uživateli se objeví jedna z pěti předdefinovaných otázek ala "Kdo bdí nad bezpečností všech dat?" a selector s možnostmi např. (Facebook, Google, EU, Schopní administrátoři) z niž jedna musí být správná. Výběr otázek a odpovědí je na Vás.
+  * V případě správné odpovědí, se objeví původní adresář, ale všechna jména uživatel budou šifrovaná. Ostatní funkčnost bude odpovídat OrderFormFactory     
 
-10. V šabloně „default“ pro třídu „StatisticPresenter“ upravte následující
-  * upravte formát ve sloupečku avg na hodnotu zaokrouhlenou na jedno desetiné místo
-  * upravte format ve sloupečku Majitel tak aby byl vždy CamelCase
+8. Změňte vzhled formuláře "User" pomocí úpravy wrappers (použijte tagy dl, dd a dt)  
+
+9. Změňte vzhled formuláře "Order" pomocí manuálního vykreslováním.  
