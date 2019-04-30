@@ -198,7 +198,7 @@ class UserFormFactory
 
         try {
             // getBirthDay returns a string such as 23.05.1996
-            $birthday = $this->utilityModel->getBirthDay($pidId);
+            $birthday = $this->utilityModel->getBirthDayForId($pidId);
 
             if ($birthday == "!!") {
                 return false;

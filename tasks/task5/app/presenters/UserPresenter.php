@@ -157,7 +157,7 @@ class UserPresenter extends BasePresenter
         });
 
         $this->template->addFilter('birthday', function ($pidId) {
-            $birthday = $this->utilityModel->getBirthDay($pidId);
+            $birthday = $this->utilityModel->getBirthDayForId($pidId);
 
             return $birthday;
         });

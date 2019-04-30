@@ -38,11 +38,7 @@ class UtilityModel extends BaseModel
         }
     }
 
-    /**
-     * Metoda detekuje datum narození
-     * @param int  $id rodného čísla
-     */
-    public function getBirthDay($id) {
+    public function getBirthDayForId($id) {
         if (!$id) {
             return "!!";
         }
@@ -55,27 +51,13 @@ class UtilityModel extends BaseModel
             }
 
             // birth number without last 4 numbers
-            $birthDay = $pid->name;
+            $birthNumber = $pid->name;
 
-            if (!$birthDay) {
+            if (!$birthNumber) {
                 return "!!";
             }
 
-            $birthDay = substr($birthDay,0, 6);
-
-            $day = intval($birthDay[4] . $birthDay[5]);
-            $month = intval($birthDay[2] . $birthDay[3]);
-            $year = 1900 + intval($birthDay[0] . $birthDay[1]);
-
-            if ($month > 50) {
-                $month = $month - 50;
-            }
-
-            $birthDay = $day . '.' . $month . '.' . $year;
-
-            if ($month > 12 || $month < 1 || $day < 1 || $day > $this->getMaxDayInMonth($month, $year)) {
-                return "!!";
-            }
+            $birthDay = $this->getBirthDay($birthNumber);
 
             return $birthDay;
 
@@ -84,42 +66,36 @@ class UtilityModel extends BaseModel
         }
     }
 
-    public function getMaxDayInMonth($month, $year) {
-        if ($month == 1 || $month == 3 || $month == 5 || $month == 7 || $month == 8 || $month == 10 || $month == 12) {
-            return 31;
-        } else if ($month == 4 || $month == 6 || $month == 9 || $month == 11) {
-            return 30;
-        } else if ($month == 2) {
-            if ($this->isLeapYear($year)) {
-                return 29;
-            } else {
-                return 28;
-            }
-        } else {
-            return null;
-        }
-    }
-
-    public function isLeapYear($year) {
-        $leap = false;
-
-        if ($year % 4 == 0) {
-            $leap = true;
+    /**
+     * Metoda detekuje datum narození
+     * @param int  $id rodného čísla
+     */
+    public function getBirthDay($birthNumber) {
+        if (!$birthNumber) {
+            return "!!";
         }
 
-        if ($year % 100 == 0) {
-            $leap = false;
+        $birthDay = substr($birthNumber,0, 6);
+
+        $day = intval($birthDay[4] . $birthDay[5]);
+        $month = intval($birthDay[2] . $birthDay[3]);
+        $year = 1900 + intval($birthDay[0] . $birthDay[1]);
+
+        if ($month > 70) {
+            $month = $month - 70;
+        } else if ($month > 50) {
+            $month = $month - 50;
+        } else if ($month > 20) {
+            $month = $month - 20;
         }
 
-        if ($year % 400 == 0) {
-            $leap = true;
+        $birthDay = $day . '.' . $month . '.' . $year;
+
+        if (!checkdate($month, $day, $year)) {
+            return "!!";
         }
 
-        if ($year % 4000 == 0) {
-            $leap = false;
-        }
-
-        return $leap;
+        return $birthDay;
     }
 
     public function getPhoneNumberInCZ($phoneNumber) {
