@@ -79,7 +79,13 @@ class UtilityModel extends BaseModel
 
         $day = intval($birthDay[4] . $birthDay[5]);
         $month = intval($birthDay[2] . $birthDay[3]);
-        $year = 1900 + intval($birthDay[0] . $birthDay[1]);
+        $year = intval($birthDay[0] . $birthDay[1]);
+
+        if ($year < 54) {
+            $year = 2000 + $year;
+        } else {
+            $year = 1900 + $year;
+        }
 
         if ($month > 70) {
             $month = $month - 70;

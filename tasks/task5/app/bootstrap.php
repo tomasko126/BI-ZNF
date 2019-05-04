@@ -1,21 +1,31 @@
 <?php
 
-require __DIR__ . '/../vendor/autoload.php';
+declare(strict_types=1);
 
-$configurator = new Nette\Configurator;
+namespace App;
 
-$configurator->enableTracy(__DIR__ . '/../log');
+use Nette\Configurator;
 
-$configurator->setTimeZone('Europe/Prague');
-$configurator->setTempDirectory(__DIR__ . '/../temp');
+class Bootstrap {
+    public static function getContainer() {
+        require __DIR__ . '/../vendor/autoload.php';
 
-$configurator->createRobotLoader()
-	->addDirectory(__DIR__)
-	->register();
+        $configurator = new Configurator;
 
-$configurator->addConfig(__DIR__ . '/config/config.neon');
-$configurator->addConfig(__DIR__ . '/config/config.local.neon');
+        $configurator->enableTracy(__DIR__ . '/../log');
 
-$container = $configurator->createContainer();
+        $configurator->setTimeZone('Europe/Prague');
+        $configurator->setTempDirectory(__DIR__ . '/../temp');
 
-return $container;
+        $configurator->createRobotLoader()
+            ->addDirectory(__DIR__)
+            ->register();
+
+        $configurator->addConfig(__DIR__ . '/config/config.neon');
+        $configurator->addConfig(__DIR__ . '/config/config.local.neon');
+
+        $container = $configurator->createContainer();
+
+        return $container;
+    }
+}
