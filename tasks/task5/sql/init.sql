@@ -44,6 +44,7 @@ CREATE TABLE `user` (
   `is_admin` tinyint(3) unsigned NOT NULL,
   `pid_id` int(11) DEFAULT NULL,
   `phone` varchar(12) COLLATE utf16_czech_ci NOT NULL,
+  `personal_number` int(6),
   PRIMARY KEY (`id`),
   KEY `pid_id` (`pid_id`),
   CONSTRAINT `user_ibfk_1` FOREIGN KEY (`pid_id`) REFERENCES `pid` (`id`)
