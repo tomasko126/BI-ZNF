@@ -16,7 +16,8 @@ class UtilityModel extends BaseModel
 
     /**
      * Metoda detekuje pohlaví -1 = nedefinováno, 0 - žena, 1 - muž
-     * @param int  $id rodného čísla
+     * @param int $id rodného čísla
+     * @return bool|int
      */
     public function isMan($id) {
         if (empty($id)) {
@@ -68,7 +69,8 @@ class UtilityModel extends BaseModel
 
     /**
      * Metoda detekuje datum narození
-     * @param int  $id rodného čísla
+     * @param $birthNumber
+     * @return bool|string
      */
     public function getBirthDay($birthNumber) {
         if (!$birthNumber) {

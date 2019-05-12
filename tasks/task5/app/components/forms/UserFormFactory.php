@@ -6,17 +6,11 @@ use App\Model\NoDataFound;
 use App\Model\UserModel;
 use App\Model\UtilityModel;
 use Nette\SmartObject;
-use Services\MyValidators;
 use Exception;
-use Kdyby\Translation\Phrase;
 use Nette\Application\UI\Form;
 use Nette\Forms\Container;
 use Nette\Utils\ArrayHash;
 use Tracy\Debugger;
-use Nette\Forms\Controls\TextInput;
-use Nette\Utils\Json;
-use Nette\Utils\Strings;
-//use Nette\Object;
 
 
 /**
@@ -27,8 +21,7 @@ use Nette\Utils\Strings;
  * @copyright  Copyright (c) 2017 Jiří Chludil
  * @package    App\Forms
  */
-class UserFormFactory
-{
+class UserFormFactory {
     use SmartObject;
 
     /** @var UserModel Model pro uživatele. */
@@ -196,24 +189,19 @@ class UserFormFactory
 
     private function validatePid($pidId) {
 
-        try {
-            // getBirthDay returns a string such as 23.05.1996
-            $birthday = $this->utilityModel->getBirthDayForId($pidId);
+        // getBirthDay returns a string such as 23.05.1996
+        $birthday = $this->utilityModel->getBirthDayForId($pidId);
 
-            if ($birthday == "!!") {
-                return false;
-            }
-
-            list($day, $month, $year) = explode(".", $birthday);
-
-            if (!checkdate($month, $day, $year)) {
-                return false;
-            }
-
-            return true;
-
-        } catch (NoDataFound $exception) {
+        if ($birthday == "!!") {
             return false;
         }
+
+        list($day, $month, $year) = explode(".", $birthday);
+
+        if (!checkdate($month, $day, $year)) {
+            return false;
+        }
+
+        return true;
     }
 }

@@ -10,9 +10,11 @@ class BaseModel {
     use Nette\SmartObject;
 
     protected $database;
-/**
-* @brief Konstruktor vytvarejici base model.
-*/
+
+    /**
+     * @brief Konstruktor vytvarejici base model.
+     * @param Nette\Database\Context $database
+     */
     public function __construct(Nette\Database\Context $database) {
         $this->database = $database;
     }

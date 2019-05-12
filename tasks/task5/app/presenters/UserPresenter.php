@@ -8,25 +8,23 @@ use App\Model\UserModel;
 use App\Model\UtilityModel;
 use Nette\Application\UI\Form;
 use App\Model\NoDataFound;
-use Tracy\Debugger;
-
-
 
 class UserPresenter extends BasePresenter
 {
     /** @var UserFormFactory - Formulářová továrnička pro správu uživatelů */
     private $formFactory;
 
-    /** @var UserModel - model pro management uživatelů*/
+    /** @var UserModel - model pro management uživatelů */
     private $userModel;
 
-    /** @var PidModel - model pro management rc*/
+    /** @var PidModel - model pro management rc */
     private $pidModel;
 
-    /** @var UtilityModel - model pro pomocné funkce uživatele*/
+    /** @var UtilityModel - model pro pomocné funkce uživatele */
     private $utilityModel;
 
-    public function injectDependencies(UserFormFactory $formFactory, UserModel $userModel, PidModel $pidModel, UtilityModel $utilityModel) {
+    public function injectDependencies(UserFormFactory $formFactory, UserModel $userModel, PidModel $pidModel, UtilityModel $utilityModel)
+    {
         $this->formFactory = $formFactory;
         $this->userModel = $userModel;
         $this->pidModel = $pidModel;
@@ -36,14 +34,14 @@ class UserPresenter extends BasePresenter
 
     /**
      * Akce pro vložení
-
      */
-    public function actionAdd() {
+    public function actionAdd()
+    {
         $form = $this['addForm'];
         try {
             $pids = $this->pidModel->listPids();
             $p = [0 => '==========='];
-            foreach($pids as $pid)
+            foreach ($pids as $pid)
                 $p[$pid['id']] = $pid['name'];
             $form['pid_id']->setItems($p);
 
@@ -56,12 +54,13 @@ class UserPresenter extends BasePresenter
      * Akce pro editaci
      * @param int $id id uživatele
      */
-    public function actionEdit($id) {
+    public function actionEdit($id)
+    {
         $form = $this['editForm'];
         try {
             $pids = $this->pidModel->listPids();
             $p = [0 => '==========='];
-            foreach($pids as $pid)
+            foreach ($pids as $pid)
                 $p[$pid['id']] = $pid['name'];
             $form['pid_id']->setItems($p);
             $user = $this->userModel->getUser($id);
@@ -75,7 +74,8 @@ class UserPresenter extends BasePresenter
      * Akce pro mazání
      * @param int $id id uživatele
      */
-    public function actionDelete($id) {
+    public function actionDelete($id)
+    {
         $form = $this['deleteForm'];
         $form['id']->setDefaultValue($id);
     }
@@ -122,28 +122,32 @@ class UserPresenter extends BasePresenter
     /**
      * Metoda pro naplnění dat pro šablonu dané akce
      */
-    public function renderEdit($id) {
+    public function renderEdit($id)
+    {
         $user = $this->userModel->getUser($id);
-        $this->template->name = $user['surname'].' '.$user['firstname'];
+        $this->template->name = $user['surname'] . ' ' . $user['firstname'];
     }
 
     /**
      * Metoda pro naplnění dat pro šablonu dané akce
      */
-    public function renderDelete($id) {
+    public function renderDelete($id)
+    {
         $user = $this->userModel->getUser($id);
-        $this->template->name = $user['surname'].' '.$user['firstname'];
+        $this->template->name = $user['surname'] . ' ' . $user['firstname'];
     }
 
 
     /**
      * Metoda pro naplnění dat pro šablonu dané akce
      */
-    public function renderDefault() {
-       $this->template->users = $this->userModel->listUsers();
+    public function renderDefault()
+    {
+        $this->template->users = $this->userModel->listUsers();
     }
 
-    protected function beforeRender() {
+    protected function beforeRender()
+    {
         parent::beforeRender();
 
         $this->template->addFilter('phone', function ($phoneNumber) {

@@ -4,16 +4,11 @@ namespace App\Forms;
 
 use App\Model\PidModel;
 use Nette\SmartObject;
-use Services\MyValidators;
 use Exception;
 use Nette\Application\UI\Form;
 use Nette\Forms\Container;
 use Nette\Utils\ArrayHash;
 use Tracy\Debugger;
-use Nette\Forms\Controls\TextInput;
-use Nette\Utils\Json;
-use Nette\Utils\Strings;
-//use Nette\Object;
 
 /**
  * Továrnička na tvorbu formulářů pro správu rc.
@@ -23,8 +18,7 @@ use Nette\Utils\Strings;
  * @copyright  Copyright (c) 2017 Jiří Chludil
  * @package    App\Forms
  */
-class PidFormFactory
-{
+class PidFormFactory {
     use SmartObject;
 
     /** @var PidModel Model pro urc. */

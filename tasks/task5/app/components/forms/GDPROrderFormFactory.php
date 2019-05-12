@@ -2,20 +2,9 @@
 
 namespace App\Forms;
 
-use App\Model\NoDataFound;
-use App\Model\UserModel;
-use App\Model\UtilityModel;
 use Nette\SmartObject;
-use Services\MyValidators;
-use Exception;
-use Kdyby\Translation\Phrase;
 use Nette\Application\UI\Form;
-use Nette\Forms\Container;
 use Nette\Utils\ArrayHash;
-use Tracy\Debugger;
-use Nette\Forms\Controls\TextInput;
-use Nette\Utils\Json;
-use Nette\Utils\Strings;
 
 class GDPROrderFormFactory {
     use SmartObject;

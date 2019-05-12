@@ -6,11 +6,8 @@ use App\Model\OrderModel;
 use Exception;
 use Nette\Application\UI\Form;
 use Nette\Forms\Container;
-use Nette\Forms\Controls\TextInput;
-//use Nette\Object;
 use Nette\SmartObject;
 use Nette\Utils\ArrayHash;
-use Nette\Utils\Strings;
 use Tracy\Debugger;
 
 
@@ -22,8 +19,7 @@ use Tracy\Debugger;
  * @copyright  Copyright (c) 2017 Jiří Chludil
  * @package    App\Forms
  */
-class OrderFormFactory
-{
+class OrderFormFactory {
     use SmartObject;
 
     /** @var OrderModel Model pro nákupy. */

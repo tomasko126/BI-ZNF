@@ -3,12 +3,8 @@
 namespace App\Presenters;
 
 use App\Model\StatisticModel;
-use Tracy\Debugger;
 
-
-
-class StatisticPresenter extends BasePresenter
-{
+class StatisticPresenter extends BasePresenter {
 
     /** @var StatisticModel - model pro statistiky */
     private $statisticModel;
